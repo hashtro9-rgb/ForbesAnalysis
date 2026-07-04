@@ -85,7 +85,7 @@ docs = box(9.3, 3.9, 2.4, 0.85, "Documentation", "docs/*.pdf, README.md")
 arrow((10.5, 5.6), (10.5, 4.75))
 
 # Footer credit
-ax.text(0.15, 0.35, "Ging (Gabriel Alegre Caña) · Forbes Global 2000 (2026) Analytics Project",
+ax.text(0.15, 0.35, "Gabriel Alegre Caña · Forbes Global 2000 (2026) Analytics Project",
          color=DIM, fontsize=8.5)
 
 plt.tight_layout()

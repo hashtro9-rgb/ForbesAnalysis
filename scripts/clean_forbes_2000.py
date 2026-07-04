@@ -1,6 +1,6 @@
 """
 Forbes Global 2000 Companies (2026) - Data Cleaning Pipeline
-Author: Ging (Gabriel Alegre Caña)
+Author: Gabriel Alegre Caña
 Date: 2026
 
 This script loads, cleans, and validates the Forbes Global 2000 dataset.

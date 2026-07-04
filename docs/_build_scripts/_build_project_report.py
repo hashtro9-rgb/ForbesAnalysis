@@ -30,7 +30,7 @@ story = []
 
 story.append(Paragraph("Forbes Global 2000 (2026)", title_style))
 story.append(Paragraph("Analytics Dashboard — Project Report", subtitle_style))
-story.append(Paragraph("Author: Ging (Gabriel Alegre Caña) &nbsp;&nbsp;|&nbsp;&nbsp; Cavite State University &nbsp;&nbsp;|&nbsp;&nbsp; July 2026", meta_style))
+story.append(Paragraph("Author: Gabriel Alegre Caña &nbsp;&nbsp;|&nbsp;&nbsp; Cavite State University &nbsp;&nbsp;|&nbsp;&nbsp; July 2026", meta_style))
 
 # --- Key stats row ---
 stats = [
