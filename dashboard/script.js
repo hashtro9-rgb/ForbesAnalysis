@@ -134,20 +134,26 @@ function renderInsights(rows){
   const strongMargin = withMargin.filter(r=>r['Profit_Margin_%']>20).length;
   const strongMarginShare = withMargin.length ? (strongMargin/withMargin.length*100) : 0;
 
-  // industry aggregates (need >=3 companies to avoid noise)
+  // industry aggregates (need >=3 companies to avoid noise; medians so
+  // outliers like holding companies with profit >> sales don't skew leaders)
   const indAgg = {};
   rows.forEach(r=>{
     if(!r.Industry) return;
-    indAgg[r.Industry] = indAgg[r.Industry] || {marginSum:0, marginN:0, roaSum:0, roaN:0, count:0};
+    indAgg[r.Industry] = indAgg[r.Industry] || {margins:[], roas:[], count:0};
     indAgg[r.Industry].count++;
-    if(r['Profit_Margin_%']!==null && !isNaN(r['Profit_Margin_%'])){ indAgg[r.Industry].marginSum+=r['Profit_Margin_%']; indAgg[r.Industry].marginN++; }
-    if(r['ROA_%']!==null && !isNaN(r['ROA_%'])){ indAgg[r.Industry].roaSum+=r['ROA_%']; indAgg[r.Industry].roaN++; }
+    if(r['Profit_Margin_%']!==null && !isNaN(r['Profit_Margin_%'])) indAgg[r.Industry].margins.push(r['Profit_Margin_%']);
+    if(r['ROA_%']!==null && !isNaN(r['ROA_%'])) indAgg[r.Industry].roas.push(r['ROA_%']);
   });
+  const median = arr => {
+    if(!arr.length) return 0;
+    const s = [...arr].sort((a,b)=>a-b), m = Math.floor(s.length/2);
+    return s.length%2 ? s[m] : (s[m-1]+s[m])/2;
+  };
   const indEligible = Object.entries(indAgg).filter(([,v])=>v.count>=3);
   let bestMarginInd = null, bestROAInd = null;
   if(indEligible.length){
-    bestMarginInd = indEligible.map(([k,v])=>[k, v.marginN?v.marginSum/v.marginN:0]).sort((a,b)=>b[1]-a[1])[0];
-    bestROAInd = indEligible.map(([k,v])=>[k, v.roaN?v.roaSum/v.roaN:0]).sort((a,b)=>b[1]-a[1])[0];
+    bestMarginInd = indEligible.map(([k,v])=>[k, median(v.margins)]).sort((a,b)=>b[1]-a[1])[0];
+    bestROAInd = indEligible.map(([k,v])=>[k, median(v.roas)]).sort((a,b)=>b[1]-a[1])[0];
   }
 
   const avgMargin = withMargin.length ? withMargin.reduce((a,r)=>a+r['Profit_Margin_%'],0)/withMargin.length : 0;
@@ -195,10 +201,13 @@ function renderInsights(rows){
 
   // Recommendation 3: profitability leaders
   if(bestMarginInd && bestROAInd){
+    const sameInd = bestMarginInd[0] === bestROAInd[0];
     cards.push({
       rec:true, kicker:'Recommendation',
-      headline:`Watch ${bestMarginInd[0]} and ${bestROAInd[0]}`,
-      body:`${bestMarginInd[0]} shows the strongest average profit margin (${fmt(bestMarginInd[1],1)}%), while ${bestROAInd[0]} leads on capital efficiency (avg ROA ${fmt(bestROAInd[1],1)}%). Both are worth a closer look in the Company Explorer below.`
+      headline: sameInd ? `Watch ${bestMarginInd[0]}` : `Watch ${bestMarginInd[0]} and ${bestROAInd[0]}`,
+      body: sameInd
+        ? `${bestMarginInd[0]} leads on both profitability measures — strongest median margin (${fmt(bestMarginInd[1],1)}%) and best capital efficiency (median ROA ${fmt(bestROAInd[1],1)}%). Worth a closer look in the Company Explorer below.`
+        : `${bestMarginInd[0]} shows the strongest median profit margin (${fmt(bestMarginInd[1],1)}%), while ${bestROAInd[0]} leads on capital efficiency (median ROA ${fmt(bestROAInd[1],1)}%). Both are worth a closer look in the Company Explorer below.`
     });
   } else {
     cards.push({

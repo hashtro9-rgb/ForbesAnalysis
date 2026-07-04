@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.2.1] — 2026-07-04
+
+### Added
+- CI workflow (`tests.yml`) running the 12 data-quality tests on every push and pull request; README test badge now reflects live CI status
+
+### Changed
+- Industry profitability leaders in the Insights panel now use **medians** instead of means, so outliers (holding companies whose profit exceeds sales) no longer skew the recommendation
+- Recommendation card merges into a single sentence when one industry leads both margin and ROA (previously repeated the industry name)
+
+### Fixed
+- Panel title typo: "Content Distribution by Country" → "Company Distribution by Country"
+
 ## [1.2.0] — 2026-07-04
 
 ### Added

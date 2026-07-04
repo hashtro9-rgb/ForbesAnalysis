@@ -7,7 +7,7 @@
 [![Deploy to GitHub Pages](https://github.com/hashtro9-rgb/ForbesAnalysis/actions/workflows/deploy.yml/badge.svg)](https://github.com/hashtro9-rgb/ForbesAnalysis/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](requirements.txt)
-[![Tests](https://img.shields.io/badge/tests-12%2F12_passing-brightgreen.svg)](tests/test_data_quality.py)
+[![Data Quality Tests](https://github.com/hashtro9-rgb/ForbesAnalysis/actions/workflows/tests.yml/badge.svg)](https://github.com/hashtro9-rgb/ForbesAnalysis/actions/workflows/tests.yml)
 
 An end-to-end analytics project on the world's 2,000 largest public companies: a documented Python cleaning pipeline, automated data-quality tests, an exploratory analysis notebook, and a self-contained interactive dashboard with live filters and computed insights — continuously deployed to GitHub Pages.
 
