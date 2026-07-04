@@ -1,0 +1,89 @@
+FORBES GLOBAL 2000 (2026) - DATA QUALITY REPORT
+======================================================================
+
+Generated: 2026-07-04 01:08:51
+
+DATASET OVERVIEW
+----------------------------------------------------------------------
+Total Records: 2000
+Total Columns: 12
+Columns: Rank, Company, Country, City, Industry, Sales ($B), Profit ($B), Assets ($B), Market Value ($B), Profit_Margin_%, Asset_Efficiency, ROA_%
+
+DATA QUALITY METRICS
+----------------------------------------------------------------------
+Completeness:
+   Rank                          : 100.00% complete (0 missing)
+   Company                       : 100.00% complete (0 missing)
+   Country                       : 100.00% complete (0 missing)
+   City                          :  99.95% complete (1 missing)
+   Industry                      : 100.00% complete (0 missing)
+   Sales ($B)                    : 100.00% complete (0 missing)
+   Profit ($B)                   : 100.00% complete (0 missing)
+   Assets ($B)                   : 100.00% complete (0 missing)
+   Market Value ($B)             :  99.95% complete (1 missing)
+   Profit_Margin_%               : 100.00% complete (0 missing)
+   Asset_Efficiency              : 100.00% complete (0 missing)
+   ROA_%                         : 100.00% complete (0 missing)
+
+Data Type Distribution:
+   float64             : 7 columns
+   str                 : 4 columns
+   int64               : 1 columns
+
+Duplicate Ranks:
+   Total unique ranks: 1702
+   Duplicate rank entries: 298
+   Note: Duplicates are expected (Forbes ties companies at same rank)
+
+Cleaning Actions Performed:
+   ✓ Extracted City and Country from Headquarters (62 countries)
+   ✓ Filled 1 missing Industry value (Medline → Healthcare & Pharmaceuticals)
+   ✓ Retained 1 missing Market Value (Revolution Medicines) - flagged but not imputed
+   ✓ Calculated 3 derived metrics (Profit Margin, Asset Efficiency, ROA)
+   ✓ Standardized column naming and ordering
+   ✓ Sorted data by Rank
+
+MISSING VALUES AFTER CLEANING
+----------------------------------------------------------------------
+   City: 1
+   Market Value ($B): 1
+NUMERIC RANGES
+----------------------------------------------------------------------
+Sales ($B):
+   Min: $0.08B
+   Max: $742.78B
+   Mean: $27.98B
+   Median: $13.85B
+
+Profit ($B):
+   Min: $0.00B
+   Max: $160.21B
+   Mean: $2.99B
+   Median: $1.18B
+
+Profit Margin (%):
+   Min: 0.00%
+   Max: 2484.39%
+   Mean: 20.72%
+   Median: 11.81%
+
+ROA (%):
+   Min: 0.00%
+   Max: 208.13%
+   Mean: 5.89%
+   Median: 3.56%
+
+CATEGORICAL DISTRIBUTIONS
+----------------------------------------------------------------------
+Countries: 62 unique
+Industries: 28 unique
+Cities: 62 unique
+
+TOP 5 COUNTRIES BY COMPANY COUNT
+----------------------------------------------------------------------
+   1. United States: 595
+   2. China: 300
+   3. Japan: 178
+   4. South Korea: 66
+   5. Canada: 64
+

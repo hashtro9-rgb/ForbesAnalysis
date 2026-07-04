@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forbes Global 2000 — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="logo">
+    <div>
+      <div class="mark">FORBES 2000</div>
+      <div class="tag">GLOBAL RANKINGS · 2026</div>
+    </div>
+  </div>
+  <div class="navlist">
+    <div class="navitem active" data-nav="overview"><span class="ic">◆</span> Overview</div>
+    <div class="navitem" data-nav="rankings"><span class="ic">▲</span> Market Leaders</div>
+    <div class="navitem" data-nav="countries"><span class="ic">●</span> Country Insights</div>
+    <div class="navitem" data-nav="industries"><span class="ic">■</span> Industry Analysis</div>
+    <div class="navitem" data-nav="profitability"><span class="ic">%</span> Profitability</div>
+    <div class="navitem" data-nav="insights"><span class="ic">✦</span> Insights</div>
+    <div class="navitem" data-nav="explorer"><span class="ic">⌕</span> Company Explorer</div>
+  </div>
+    <div class="sidebar-foot">Data: Forbes Global 2000, 2026<br>Cleaned &amp; built by Ging</div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <h1>FORBES <em>2000</em> — Global Company Analysis Dashboard</h1>
+    <div class="meta" id="topbarMeta">2,000 companies · 62 countries · 28 industries</div>
+  </div>
+
+  <div class="content">
+    <div class="center">
+
+      <div class="kpi-row" id="kpiRow"></div>
+
+      <div class="panel-grid" id="overview">
+        <div class="panel span2" id="rankings">
+          <div class="panel-head"><h3>Market Value Concentration by Rank Tier</h3><div class="tag">SUM $B</div></div>
+          <div class="panel-chart"><canvas id="trendChart"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Industry Mix</h3><div class="tag">TOP 6</div></div>
+          <div class="panel-chart"><canvas id="donutChart"></canvas></div>
+        </div>
+
+        <div class="panel span2" id="countries">
+          <div class="panel-head"><h3>Content Distribution by Country</h3><div class="tag">COMPANY COUNT</div></div>
+          <div class="heatgrid" id="heatGrid"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Top 10 Companies</h3><div class="tag">BY MARKET VALUE</div></div>
+          <ul class="rank-list" id="rankList"></ul>
+        </div>
+
+        <div class="panel" id="industries">
+          <div class="panel-head"><h3>Top Industries</h3><div class="tag">BY COUNT</div></div>
+          <div class="panel-chart"><canvas id="industryChart"></canvas></div>
+        </div>
+        <div class="panel" id="profitability">
+          <div class="panel-head"><h3>Profit Margin Distribution</h3><div class="tag">%</div></div>
+          <div class="panel-chart"><canvas id="marginHistChart"></canvas></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Avg ROA by Rank Tier</h3><div class="tag">%</div></div>
+          <div class="panel-chart"><canvas id="roaChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="insights-section" id="insights">
+        <div class="section-title">
+          <h2>Insights &amp; Recommendations</h2>
+          <div class="tag" id="insightsTag">BASED ON CURRENT FILTERS</div>
+        </div>
+        <div class="insights-grid" id="insightsGrid"></div>
+      </div>
+
+      <div class="table-section" id="explorer">
+        <div class="table-panel">
+          <div class="table-panel-head">
+            <h3>Company Explorer</h3>
+            <div class="tag" id="rowCount">2000 ROWS</div>
+          </div>
+          <div class="table-search">
+            <input type="text" id="searchInput" placeholder="Search company name...">
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th data-key="Rank">Rank</th>
+                  <th data-key="Company">Company</th>
+                  <th data-key="Country">Country</th>
+                  <th data-key="Industry">Industry</th>
+                  <th data-key="Sales ($B)">Sales</th>
+                  <th data-key="Profit ($B)">Profit</th>
+                  <th data-key="Market Value ($B)">Mkt Value</th>
+                  <th data-key="Profit_Margin_%">Margin %</th>
+                  <th data-key="ROA_%">ROA %</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="filters-panel">
+      <h4>Filters</h4>
+      <div class="filter-group">
+        <label>Country</label>
+        <select id="countryFilter"><option value="">All</option></select>
+      </div>
+      <div class="filter-group">
+        <label>Industry</label>
+        <select id="industryFilter"><option value="">All</option></select>
+      </div>
+      <div class="filter-group">
+        <label>Rank Range</label>
+        <select id="rankFilter">
+          <option value="">All</option>
+          <option value="0-100">Top 100</option>
+          <option value="100-500">101 – 500</option>
+          <option value="500-1000">501 – 1000</option>
+          <option value="1000-2000">1001 – 2000</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Profitability</label>
+        <select id="marginFilter">
+          <option value="">All</option>
+          <option value="high">Margin &gt; 20%</option>
+          <option value="mid">Margin 5 – 20%</option>
+          <option value="low">Margin &lt; 5%</option>
+        </select>
+      </div>
+      <button class="filter-reset" id="resetFilters">Reset all filters</button>
+    </aside>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

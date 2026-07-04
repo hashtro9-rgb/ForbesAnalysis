@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.Python
+build/
+dist/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+.claude/settings.local.json
+*.swp
+*.swo
+
+# Environment / secrets
+.env
+.env.local
+
+# Logs
+*.log
+
+# Large / temp exports (keep processed data, ignore scratch exports)
+data/processed/*.tmp
+*.bak
