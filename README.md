@@ -15,6 +15,23 @@ An end-to-end analytics project on the world's 2,000 largest public companies: a
 
 ---
 
+## Preview
+
+<p align="center">
+  <img src="assets/gifs/dashboard-demo.gif" alt="Demo — filtering by country and industry, live insights, reset" width="100%">
+</p>
+
+*Live filtering demo: selecting United States → Banking updates every KPI, chart, and insight together, then resets.*
+
+| | |
+|---|---|
+| ![Dashboard Overview](assets/images/dashboard-overview.png) | ![Market Leaders](assets/images/market-leaders.png) |
+| ![Country Analysis](assets/images/country-analysis.png) | ![Industry Analysis](assets/images/industry-analysis.png) |
+
+![Profitability](assets/images/profitability.png)
+
+---
+
 ## Overview
 
 | Stage | Deliverable | Tooling |

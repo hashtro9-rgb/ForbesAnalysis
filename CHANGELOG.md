@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.2.0] — 2026-07-04
+
+### Added
+- Live deployment on GitHub Pages: [hashtro9-rgb.github.io/ForbesAnalysis](https://hashtro9-rgb.github.io/ForbesAnalysis/)
+- Demo assets captured from the live dashboard with Playwright: five README screenshots (`assets/images/`) and an animated filtering demo GIF (`assets/gifs/dashboard-demo.gif`)
+- README Preview section showcasing the demo GIF and screenshots
+
+### Changed
+- README revised: status badges, live dashboard link, overview and documentation tables, cleaner author section
+- Deploy workflow can now provision the GitHub Pages site (`enablement: true`) and re-deploys on workflow changes
+
 ## [1.1.0] — 2026-07-03
 
 ### Added
